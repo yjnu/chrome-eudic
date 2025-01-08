@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查词划句设置</title>
+    <link href="css/options.css" type="text/css" rel="stylesheet"/>
+</head>
+
+<body>
+<div id="main">
+    <header>
+        <h1>查词划句设置</h1>
+    </header>
+    <hr>
+    <div id="saveRes" class="height-0">
+        <div>
+            <p>保存成功</p>
+        </div>
+    </div>
+    <ul>
+        <li>
+            <h3>双击查词</h3>
+            <p>
+                <label>
+                    <input type="radio" name="clickLookup" value="true" checked>是
+                    <input type="radio" name="clickLookup" value="false">否
+                </label>
+            </p>
+            <h3>按键划句</h3>
+            <p class="select">
+                <select name="drawKey">
+                <option value="alt">Alt</option>
+                <option selected value="ctrl">Ctrl</option>
+                <option value="shift">Shift</option>
+                </select>
+            </p>
+            <p>
+                <label>
+                    <input type="radio" name="drawLookup" value="true">是
+                    <input type="radio" name="drawLookup" value="false" checked>否
+                </label>
+            </p>
+        </li>
+        <!-- <li>
+            <h3>默认加入生词库</h3>
+            <p>
+                <label>
+                    <input type="radio" name="addBook" value="true">是
+                    <input type="radio" name="addBook" value="false" checked>否
+                </label>
+            </p>
+        </li> -->
+        <li>
+            <h3>启用百度翻译</h3>
+            <p>
+                <label>
+                    <input type="radio" name="translate" value="true">是
+                    <input type="radio" name="translate" value="false" checked>否
+                </label>
+            </p>
+        </li>
+        <!-- <li>
+            <h3>默认发音</h3>
+            <p class="select">
+                <select name="autoRead">
+                    <option value="us">美音</option>
+                    <option value="en">英音</option>
+                    <option selected value="false">关闭</option>
+                </select>
+            </p>
+        </li> -->
+        <li>
+            <h3>屏蔽站点</h3>
+            <div>
+                <p>可以把某些站点列入屏蔽站点。默认屏蔽站点:</p>
+                <ul class="ignore-sites"></ul>
+                <label>
+                    <textarea name="ignoreSites" style="width: 95%;" rows="10" placeholder="只添加域名, 如:  baidu.com  多个域名用回车分割"></textarea>
+                </label>
+            </div>
+        </li>
+        <li>
+            <h3>欧路词典API</h3>
+            <p>
+                <a href="https://my.eudic.net/OpenAPI/Authorization" target="_blank">获取链接</a>
+            </p>
+            <p><strong>API:&nbsp;</strong><input type="text" name="eudicKey" value=""></p>
+        </li>
+        <li>
+            <h3>百度翻译API</h3>
+            <p>
+                <a href="https://api.fanyi.baidu.com/api/trans/product/apidoc" target="_blank">获取链接</a>
+            </p>
+            <p><strong>appid:&nbsp;</strong><input type="text" name="baiduId" value=""></p>
+            <p><strong>key:&nbsp;&nbsp;</strong><input type="text" name="baiduKey" value=""></p>
+        </li>
+        <!-- <li>
+            <h3>腾讯翻译API</h3>
+            <p>
+                <a href="https://cloud.tencent.com.cn/product/tmt" target="_blank">获取链接</a>
+            </p>
+            <p><strong>secretid:&nbsp;&nbsp;&nbsp;</strong><input type="text" name="tencentSecretId" value=""></p>
+            <p><strong>secretkey:&nbsp;</strong><input type="text" name="tencentSecretKey" value=""></p>
+            <div>
+                <span style="padding: 0 20px 0 0;line-height: 3.2em;"><strong>region:</strong></span>
+                <p class="select">
+                    <select name="tencentRegion">
+                        <option selected value="ap-chengdu">成都</option>
+                        <option value="ap-beijing">北京</option>
+                        <option value="ap-guangzhou">广州</option>
+                        <option value="ap-shanghai">上海</option>
+                        <option value="ap-hongkong">香港</option>
+                        <option value="ap-chongqing">重庆</option>
+                    </select>
+                </p>
+            </div>
+        </li> -->
+    </ul>
+
+    <div id="saveP">
+        <button id="save">保存</button>
+    </div>
+
+    <hr>
+    <details>
+        <summary>扩展由来</summary>
+        <p>这个应用是基于 <a href="https://github.com/maicss/chrome-shanbay-v2" target="_blank">maicss</a> 的扇贝查词应用的改版, 壳相似, 但用的 api 不一样</p>
+        <p>如有问题可点击扩展图标, 再点击<strong>"扩展源代码"</strong>到达 github 页面可向我反馈问题, 只反馈 bug</p>
+        <p>为什么要改这个扩展, 因为沙拉查词不能使用了, 没有替代品, 只能自己改个低配版, 顺便分享, 如有侵权, 请联系我, 我将在收到通知后第一时间整改</p>
+    </details>
+</div>
+<script src="js/utils.mjs" type="module"></script>
+<script src="js/options.js" type="module"></script>
+</body>
+
+</html>

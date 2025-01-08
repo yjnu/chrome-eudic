@@ -1,0 +1,45 @@
+{
+  "name"             : "查词划句",
+  "version"          : "1.0",
+  "author"           : "yjnu",
+  "manifest_version" : 3,
+  "description"      : "基于扇贝词典查词, 欧路api添加生词, 百度api翻译语句",
+  "icons": {
+    "48"  : "images/icon_48.png",
+    "72"  : "images/icon_72.png",
+    "128" : "images/icon_128.png"
+  },
+  "background": {
+    "service_worker" : "js/background.js",
+    "type"           : "module"
+  },
+  "options_page"     : "options.html",
+  "action": {
+    "default_icon"  : "images/icon_48.png",
+    "default_popup" : "popup.html",
+    "default_title" : "查词划句"
+  },
+  "minimum_chrome_version"   : "88",
+  "web_accessible_resources" : [
+    {
+      "matches"   : ["<all_urls>"],
+      "resources" : ["js/utils.mjs"]
+    }
+  ],
+  "content_scripts": [
+    {
+      "js"      : ["js/content.mjs"],
+      "matches" : ["<all_urls>"],
+      "exclude_matches": [
+        "*://*.eudic.net/*",
+        "*://*.shanbay.com/*"
+      ]
+    }
+  ],
+  "permissions": [
+    "storage",
+    "alarms",
+    "scripting",
+    "activeTab"
+  ]
+}
