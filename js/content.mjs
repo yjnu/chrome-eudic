@@ -89,13 +89,14 @@
             const wordElement = document.createElement('div');
             wordElement.style.color = "#000000";
             
-            // 扇贝查词
-            chrome.runtime.sendMessage({action: 'shanbay', msg: selection}, function(response) {
-              if (response.shanbayRet === 1) {
-                h2link.textContent = response.content;
+            // 金山查词
+            chrome.runtime.sendMessage({action: 'iciba', msg: selection}, function(response) {
+              if (response.iciba === 1) {
+                h2link.textContent = response.word;
                 response.definitions.forEach(def => {
                   const defs = document.createElement('p');
-                  defs.textContent = `${def.pos} ${def.def}`;
+                  // defs.textContent = `${def.pos} ${def.def}`;
+                  defs.textContent = def;
                   wordElement.appendChild(defs);
                  });
                 
@@ -126,7 +127,9 @@
                 });
               } else {
                 h2link.textContent = selection;
-                wordElement.textContent = '查询失败';
+                // wordElement.textContent = '查询失败';
+                wordElement.textContent = response.ret;
+
                 // 显示 h2 标题, 也就是所选单词
                 // h2link.textContent = selection;
                 h2link.href = `https://cn.bing.com/dict/${selection}`;

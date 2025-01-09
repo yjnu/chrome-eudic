@@ -89,7 +89,7 @@ export async function addNewWord(word, eudicKey) {
     }
 }
 
-// 扇贝查词
+// 扇贝查词, 需要登录, 不好用
 export async function shanbay(word) {
     return fetch(`https://apiv3.shanbay.com/abc/words/senses?vocabulary_content=${word}`)
       .then(response => response.json())
@@ -121,41 +121,27 @@ export async function shanbay(word) {
         });
 }
 
-// 必应查单词 有问题,需要改
-export async function bingDict(word) {
-  const url = `https://cn.bing.com/dict/search?q=${encodeURIComponent(word)}`;
-  try {
-    const response = await fetch(url);
-    const html = await response.text();
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-
-    const englishWordElement = doc.querySelector('#headword');
-    const englishWord = englishWordElement? englishWordElement.textContent.trim() : word;
-    
-    const qdefElements = doc.getElementsByClassName('qdef');
-    let retValue;
-    if (qdefElements.length > 0) {
-        const allBing = qdefElements[0];
-        const childNodes = allBing.childNodes;
-        retValue = childNodes.length > 1? childNodes[1] : null;
-    } else {
-        retValue = null;
-    }
-
-    const responseData = {
-        head: englishWord,
-        ret: retValue? retValue.textContent : `<p>未找到释义</p>`
-    };
-    return responseData;
-  } catch (error) {
-      debugLogger("error", '查询失败:', error);
-      const responseData = {
-          head: word,
-          ret: `<p>查询失败，请检查网络或输入的单词</p>`
-    };
-    return responseData;
-  }
+// 金山词典
+export async function iciba(word) {
+    return fetch(`http://dict-mobile.iciba.com/interface/index.php?c=word&m=getsuggest&nums=1&client=6&is_need_mean=1&word=${word}`)
+     .then(response => response.json())
+     .then(data => {
+            if (data.message && data.message.length > 0) {
+                const paraphrase = data.message[0].paraphrase;
+                const defs = paraphrase.split(';');
+                return {
+                    iciba: 1,
+                    word: data.message[0].key,
+                    definitions: defs
+                };
+            } else {
+                return { iciba: 0, ret: "暂无释义" };
+            }
+        })
+     .catch(error => {
+            debugLogger('error', '金山词典 Error', error);
+            return { iciba: 0, ret: "请求错误" };
+        });
 }
 
 // 腾讯翻译

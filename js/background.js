@@ -1,4 +1,4 @@
-import tencentTranslator, { debugLogger, storageSettingMap, addNewWord, shanbay, baiduTranslate } from './utils.mjs'
+import tencentTranslator, { debugLogger, storageSettingMap, addNewWord, shanbay, baiduTranslate, iciba } from './utils.mjs'
 
 
 // 插件安装时，打开插件的设置页面
@@ -55,13 +55,13 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
           sendResponse( {shanbayRet: 0, msg: error})
         });
       break;
-    case 'bing':
-      bingDict(request.msg).then(response => {
+    case 'iciba':
+      iciba(request.msg).then(response => {
           sendResponse(response);
-          debugLogger('info', "必应查询成功")
+          debugLogger('info', "金山词霸查询成功")
       }).catch(error => {
-          sendResponse({head: request.msg ,ret: error})
-          debugLogger('error', '必应查询出错', error)
+          sendResponse({iciba: 0, ret: "请求错误"})
+          debugLogger('error', '金山词霸查询出错', error)
         });
       break;
     case 'baidu':
