@@ -56,16 +56,16 @@
           // 调整弹窗位置到鼠标右边，距离鼠标40像素
           let newX = x + 25;
           const popupWidth = 200; // 假设弹窗宽度为200
-          if (newX + popupWidth > windowWidth) {
-              newX = windowWidth - popupWidth;
-          }
+          // if (newX + popupWidth > windowWidth) {
+          //     newX = windowWidth - popupWidth;
+          // }
           popup.style.left = newX + 'px';
           
           let newY = y + 25;
           const popupHeight = 100; // 假设弹窗高度为100
-          if (newY + popupHeight > windowHeight) {
-              newY = windowHeight - popupHeight;
-          }
+          // if (newY + popupHeight > windowHeight) {
+          //     newY = windowHeight - popupHeight;
+          // }
           popup.style.top = newY + 'px';
           
           // 创建弹出窗口元素
@@ -158,7 +158,7 @@
 
           // 显示弹出窗口
           document.body.appendChild(popup);
-          
+          debugLogger('log', "查词划句", `${selection}`); 
           // 点击页面其他地方关闭弹出窗口
           // 点击页面其他地方关闭弹出窗口
           const closePopup = function (event) {
@@ -186,7 +186,6 @@
         (storage.drawKey === 'ctrl' && event.ctrlKey) ||
         (storage.drawKey ==='shift' && event.shiftKey))) {
       handleSelection(event, true, true);
-      // alert(`${storage.drawKey} is pressed`);
     }
   });
 })(); 
